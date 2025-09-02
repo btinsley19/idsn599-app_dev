@@ -1,14 +1,14 @@
 //
-//  helloWorldApp.swift
-//  helloWorld
+//  ex1_helloworldApp.swift
+//  ex1_helloworld
 //
-//  Created by Brian Tinsley on 8/28/25.
+//  Created by Brian Tinsley on 9/2/25.
 //
 
 import SwiftUI
 
 @main
-struct helloWorldApp: App {
+struct ex1_helloworldApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
