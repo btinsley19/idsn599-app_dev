@@ -1,0 +1,12 @@
+I did a spin on the clicker app where you build a city.
+Houses, business buildings, and skyscrapers generate random ranges of jobs/housing.
+
+i used a linear gradient in the background and rectangles to create the buildings/windows
+
+the horizontal scroll view was nice to allow you to scroll left/right onthe city you made
+
+at certain set populations, you get a milestone update of the size of your city
+
+also along the way you get an update of the balance of people/jobs for unemployment/labor shortage
+
+
