@@ -1,0 +1,7 @@
+This is mmy first mobile app using swift! I used the profile icon and tried changing color and shape, and then as I looked through the other controls I could use i liked the idea of using a slider.
+
+The slider required me to use a State variable that is updated as the slider is moved.
+
+Once i had the slider and profile i thought it would be cool to start an app where you can just checkin with yourself and reflect, mostly inspired by my ambition to start journaling and keeping track of my emotions.
+
+  
