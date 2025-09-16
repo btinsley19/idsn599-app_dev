@@ -1,0 +1,4 @@
+I've created an onboarding flow for my idea of an AI powered Rolodex.
+This app will help users achieve their personal and career goals by surfacing relevant talking points (from news headlines, meeting notes, etc.)
+The onboarding flow here is meant to capture the essence of the user so that Rolo can gain context and a North Star to follow when guiding them in their growth.
+The key is having the user feel dopamine spikes and perceived value as they fill it out so that when the paywall comes they feel theyve already gotten value.
