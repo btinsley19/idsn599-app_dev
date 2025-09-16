@@ -1,0 +1,296 @@
+{
+  "source": "/Users/bt/Desktop/mobile_app_dev/idsn599-app_dev/ex3_onboarding/ex3_onboarding/ContentView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Back",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 225
+        }
+      },
+      {
+        "comment": "",
+        "key": "Welcome to Rolo 🚀",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 274
+        }
+      },
+      {
+        "comment": "",
+        "key": "You're all set to grow your network with purpose.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 279
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enter Rolo",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 292
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 527
+        }
+      },
+      {
+        "comment": "",
+        "key": "Done",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 541
+        }
+      },
+      {
+        "comment": "",
+        "key": "Let's tailor Rolo to you.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 567
+        }
+      },
+      {
+        "comment": "",
+        "key": "Your network, your goals — let's personalize both.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 572
+        }
+      },
+      {
+        "comment": "",
+        "key": "Why are you here?",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 611
+        }
+      },
+      {
+        "comment": "",
+        "key": "Back",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 638
+        }
+      },
+      {
+        "comment": "",
+        "key": "Where are you right now?",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 672
+        }
+      },
+      {
+        "comment": "",
+        "key": "Role/Title",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 681
+        }
+      },
+      {
+        "comment": "",
+        "key": "e.g., Product Manager",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 685
+        }
+      },
+      {
+        "comment": "",
+        "key": "Industry",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 690
+        }
+      },
+      {
+        "comment": "",
+        "key": "Life Stage",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 715
+        }
+      },
+      {
+        "comment": "",
+        "key": "Life Stage",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 719
+        }
+      },
+      {
+        "comment": "",
+        "key": "Back",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 733
+        }
+      },
+      {
+        "comment": "",
+        "key": "Where do you want to be?",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 765
+        }
+      },
+      {
+        "comment": "",
+        "key": "Short-term goals (3 months)",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 774
+        }
+      },
+      {
+        "comment": "",
+        "key": "Choose from examples",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 791
+        }
+      },
+      {
+        "comment": "",
+        "key": "Long-term goals (6-12 months)",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 807
+        }
+      },
+      {
+        "comment": "",
+        "key": "Choose from examples",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 824
+        }
+      },
+      {
+        "comment": "",
+        "key": "Back",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 845
+        }
+      },
+      {
+        "comment": "",
+        "key": "What are your strengths — and what do you want to learn more about?",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 876
+        }
+      },
+      {
+        "comment": "",
+        "key": "Interests & Topics",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 885
+        }
+      },
+      {
+        "comment": "",
+        "key": "Strengths & Learning Areas",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 910
+        }
+      },
+      {
+        "comment": "",
+        "key": "Back",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 940
+        }
+      },
+      {
+        "comment": "",
+        "key": "How should Rolo nudge you?",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 970
+        }
+      },
+      {
+        "comment": "",
+        "key": "We'll never spam you — change this anytime.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 974
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nudge Cadence",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 983
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cadence",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 987
+        }
+      },
+      {
+        "comment": "",
+        "key": "Channel",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 996
+        }
+      },
+      {
+        "comment": "",
+        "key": "Channel",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 1000
+        }
+      },
+      {
+        "comment": "",
+        "key": "Reflection",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 1009
+        }
+      },
+      {
+        "comment": "",
+        "key": "I'm a product manager interested in AI and design. My biggest goal right now is …",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 1013
+        }
+      },
+      {
+        "comment": "",
+        "key": "Back",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 1024
+        }
+      }
+    ]
+  },
+  "version": 1
+}

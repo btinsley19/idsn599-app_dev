@@ -1,0 +1,73 @@
+{
+  "buildCommand" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildOnly"
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "afba4d4c7e0013de4129e76123da6d8b20d539c41a28c43e01b9ecf7bfd15a87"
+    }
+  ],
+  "containerPath" : "/Users/bt/Desktop/mobile_app_dev/idsn599-app_dev/ex3_onboarding/ex3_onboarding.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "iphonesimulator",
+      "sdk" : "iphonesimulator18.5",
+      "sdkVariant" : "iphonesimulator",
+      "supportedArchitectures" : [
+        "arm64",
+        "x86_64"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/bt/Desktop/mobile_app_dev/idsn599-app_dev/ex3_onboarding/DerivedData/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/bt/Desktop/mobile_app_dev/idsn599-app_dev/ex3_onboarding/DerivedData/Build/Products",
+      "derivedDataPath" : "/Users/bt/Desktop/mobile_app_dev/idsn599-app_dev/ex3_onboarding/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/bt/Desktop/mobile_app_dev/idsn599-app_dev/ex3_onboarding/DerivedData/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/bt/Desktop/mobile_app_dev/idsn599-app_dev/ex3_onboarding/DerivedData/Index.noindex/PrecompiledHeaders",
+      "pchPath" : "/Users/bt/Desktop/mobile_app_dev/idsn599-app_dev/ex3_onboarding/DerivedData/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "commandLine" : {
+        "table" : {
+
+        }
+      },
+      "synthesized" : {
+        "table" : {
+          "ACTION" : "build",
+          "ASSETCATALOG_FILTER_FOR_DEVICE_MODEL" : "iPhone17,3",
+          "ASSETCATALOG_FILTER_FOR_DEVICE_OS_VERSION" : "18.6",
+          "ASSETCATALOG_FILTER_FOR_THINNING_DEVICE_CONFIGURATION" : "iPhone17,3",
+          "BUILD_ACTIVE_RESOURCES_ONLY" : "YES",
+          "COLOR_DIAGNOSTICS" : "YES",
+          "diagnostic_message_length" : "174",
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "YES",
+          "ONLY_ACTIVE_ARCH" : "YES",
+          "TARGET_DEVICE_IDENTIFIER" : "BEBC960B-0528-43A3-8290-7CF08057E691",
+          "TARGET_DEVICE_MODEL" : "iPhone17,3",
+          "TARGET_DEVICE_OS_VERSION" : "18.6",
+          "TARGET_DEVICE_PLATFORM_NAME" : "iphonesimulator"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}
