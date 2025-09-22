@@ -75,7 +75,7 @@ struct InformationSourcesPage: View {
             HStack(spacing: 16) {
                 Button("Back") {
                     withAnimation(.easeOut(duration: 0.25)) {
-                        currentPage = 7
+                        currentPage = 9
                     }
                 }
                 .font(.system(size: 16, weight: .medium))
@@ -85,7 +85,7 @@ struct InformationSourcesPage: View {
                 
                 GradientButton(title: "Next ▸") {
                     withAnimation(.easeOut(duration: 0.25)) {
-                        currentPage = 9
+                        currentPage = 11
                     }
                 }
             }

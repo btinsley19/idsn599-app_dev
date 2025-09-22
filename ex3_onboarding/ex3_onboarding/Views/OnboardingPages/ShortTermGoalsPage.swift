@@ -1,5 +1,5 @@
 //
-//  StrengthsPage.swift
+//  ShortTermGoalsPage.swift
 //  ex3_onboarding
 //
 //  Created by Brian Tinsley on 9/11/25.
@@ -7,29 +7,30 @@
 
 import SwiftUI
 
-struct StrengthsPage: View {
+struct ShortTermGoalsPage: View {
     @Binding var onboardingData: OnboardingData
     @Binding var currentPage: Int
     
-    @State private var selectedStrengths: Set<String> = []
-    @State private var customStrength: String = ""
+    @State private var selectedGoals: Set<String> = []
+    @State private var customGoal: String = ""
     
-    private let suggestedStrengths = [
-        "Leadership", "Analytics", "Communication", "Problem Solving", 
-        "Strategic Thinking", "Team Building", "Creativity", "Adaptability",
-        "Project Management", "Critical Thinking"
+    private let suggestedGoals = [
+        "Land a new role",
+        "Learn more about a topic",
+        "Get a mentor",
+        "Close more deals"
     ]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("What are your superpowers?")
+                Text("What are your short-term goals?")
                     .font(.system(size: 28, weight: .semibold))
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
                 
-                Text("Tell us about your current strengths and expertise. This helps us understand what you bring to the table.")
+                Text("Think about what you want to achieve in the next 6-12 months. This helps us create a focused plan for you.")
                     .font(.system(size: 16, weight: .regular))
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.leading)
@@ -39,39 +40,39 @@ struct StrengthsPage: View {
             .padding(.top, 40)
             
             VStack(alignment: .leading, spacing: 20) {
-                // Custom strength input
+                // Custom goal input
                 HStack {
-                    TextField("+ Add your own strength", text: $customStrength)
+                    TextField("+ Add your own goal", text: $customGoal)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .onSubmit {
-                            if !customStrength.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                                selectedStrengths.insert(customStrength.trimmingCharacters(in: .whitespacesAndNewlines))
-                                customStrength = ""
+                            if !customGoal.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                                selectedGoals.insert(customGoal.trimmingCharacters(in: .whitespacesAndNewlines))
+                                customGoal = ""
                             }
                         }
                     
                     Button("Add") {
-                        if !customStrength.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                            selectedStrengths.insert(customStrength.trimmingCharacters(in: .whitespacesAndNewlines))
-                            customStrength = ""
+                        if !customGoal.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                            selectedGoals.insert(customGoal.trimmingCharacters(in: .whitespacesAndNewlines))
+                            customGoal = ""
                         }
                     }
-                    .disabled(customStrength.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    .disabled(customGoal.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 }
                 
-                // All strengths (suggested + custom)
-                let allStrengths = suggestedStrengths + Array(selectedStrengths).filter { !suggestedStrengths.contains($0) }
-                if !allStrengths.isEmpty {
+                // All goals (suggested + custom)
+                let allGoals = suggestedGoals + Array(selectedGoals).filter { !suggestedGoals.contains($0) }
+                if !allGoals.isEmpty {
                     FlowLayout(hSpacing: 8, vSpacing: 8, rowAlignment: .center) {
-                        ForEach(allStrengths, id: \.self) { strength in
+                        ForEach(allGoals, id: \.self) { goal in
                             Chip(
-                                text: strength,
-                                isSelected: selectedStrengths.contains(strength)
+                                text: goal,
+                                isSelected: selectedGoals.contains(goal)
                             ) {
-                                if selectedStrengths.contains(strength) {
-                                    selectedStrengths.remove(strength)
+                                if selectedGoals.contains(goal) {
+                                    selectedGoals.remove(goal)
                                 } else {
-                                    selectedStrengths.insert(strength)
+                                    selectedGoals.insert(goal)
                                 }
                             }
                         }
@@ -86,7 +87,7 @@ struct StrengthsPage: View {
             HStack(spacing: 16) {
                 Button("Back") {
                     withAnimation(.easeOut(duration: 0.25)) {
-                        currentPage = 6
+                        currentPage = 5
                     }
                 }
                 .font(.system(size: 16, weight: .medium))
@@ -95,11 +96,11 @@ struct StrengthsPage: View {
                 Spacer()
                 
                 GradientButton(title: "Next ▸") {
-                    // Save selected strengths to onboarding data
-                    onboardingData.strengths.append(contentsOf: selectedStrengths)
+                    // Save selected goals to onboarding data
+                    onboardingData.shortTermGoals.append(contentsOf: selectedGoals)
                     
                     withAnimation(.easeOut(duration: 0.25)) {
-                        currentPage = 9
+                        currentPage = 7
                     }
                 }
             }
@@ -108,3 +109,4 @@ struct StrengthsPage: View {
         }
     }
 }
+

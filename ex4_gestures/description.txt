@@ -1,0 +1,20 @@
+Zen Garden App - Gesture System
+
+APP PURPOSE:
+A Japanese zen garden simulator where users draw patterns in sand, place garden items, and manipulate the view with zoom/rotation.
+
+MAIN TECHNICAL ISSUE:
+When users zoomed or rotated the view, dragging garden items went in wrong directions (drag right, item moves left). This happened because the app has two coordinate systems that got out of sync:
+- Screen coordinates (where finger touches)
+- Canvas coordinates (where items are stored)
+
+SOLUTION:
+Created an "inverseTransform" function that converts between coordinate systems, so dragging always works correctly regardless of zoom or rotation.
+
+GESTURES INCLUDED:
+1. Garden Item Dragging (highest priority) - move items around
+2. Rake Drawing (medium priority) - draw sand patterns  
+3. Zoom/Rotate (lowest priority) - pinch to zoom, rotate view
+4. Menu Item Placement - drag items from bottom menu to canvas
+
+The gesture hierarchy prevents conflicts - item dragging takes priority over rake drawing, and zoom/rotate work simultaneously with other gestures.

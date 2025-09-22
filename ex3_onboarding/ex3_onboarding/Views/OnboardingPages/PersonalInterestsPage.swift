@@ -86,7 +86,7 @@ struct PersonalInterestsPage: View {
                 HStack(spacing: 16) {
                     Button("Back") {
                         withAnimation(.easeOut(duration: 0.25)) {
-                            currentPage = 8
+                            currentPage = 10
                         }
                     }
                     .font(.system(size: 16, weight: .medium))
@@ -99,7 +99,7 @@ struct PersonalInterestsPage: View {
                         onboardingData.personalInterests.append(contentsOf: selectedInterests)
                         
                         withAnimation(.easeOut(duration: 0.25)) {
-                            currentPage = 10
+                            currentPage = 12
                         }
                     }
                 }

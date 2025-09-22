@@ -13,7 +13,11 @@ struct GradientButton: View {
     @State private var isPressed = false
     
     var body: some View {
-        Button(action: action) {
+        Button(action: {
+            // Hide keyboard before executing the action
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            action()
+        }) {
             Text(title)
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundColor(.white)

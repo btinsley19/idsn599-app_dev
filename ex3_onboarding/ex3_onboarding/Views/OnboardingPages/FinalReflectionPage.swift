@@ -62,7 +62,7 @@ struct FinalReflectionPage: View {
             HStack(spacing: 16) {
                 Button("Back") {
                     withAnimation(.easeOut(duration: 0.25)) {
-                        currentPage = 10
+                        currentPage = 12
                     }
                 }
                 .font(.system(size: 16, weight: .medium))
@@ -72,7 +72,7 @@ struct FinalReflectionPage: View {
                 
                 GradientButton(title: "Next ▸") {
                     withAnimation(.easeOut(duration: 0.25)) {
-                        currentPage = 12
+                        currentPage = 14
                     }
                 }
             }

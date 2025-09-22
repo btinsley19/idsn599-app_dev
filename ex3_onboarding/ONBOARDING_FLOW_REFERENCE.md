@@ -7,17 +7,19 @@
 - **Page 1**: "Grow with purpose"
 - **Page 2**: "Remember what matters"
 
-### **Personalization Flow** (Pages 3-12) - Main onboarding
+### **Personalization Flow** (Pages 3-14) - Main onboarding
 - **Page 3**: Name Collection
 - **Page 4**: What brings you to Rolo? (Motivation)
 - **Page 5**: Where are you in your journey? (Current state - MULTIPLE SELECTION)
-- **Page 6**: Where do you want to go next? (Goals)
-- **Page 7**: What are your superpowers? (Strengths & Growth Areas)
-- **Page 8**: How do you usually keep up? (Information Sources)
-- **Page 9**: Beyond work, what are your interests? (Personal Interests)
-- **Page 10**: What's your style when it comes to building connections? (Networking Style)
-- **Page 11**: Is there anything else we should know? (Final Reflection & File Upload)
-- **Page 12**: Welcome, here's what we learned about you (Personal Plan Summary)
+- **Page 6**: What are your short-term goals? (Short-term Goals)
+- **Page 7**: What are your long-term aspirations? (Long-term Goals)
+- **Page 8**: What are your superpowers? (Strengths)
+- **Page 9**: What would you love to get better at? (Growth Areas)
+- **Page 10**: How do you usually keep up? (Information Sources)
+- **Page 11**: Beyond work, what are your interests? (Personal Interests)
+- **Page 12**: What's your style when it comes to building connections? (Networking Style)
+- **Page 13**: Is there anything else we should know? (Final Reflection & File Upload)
+- **Page 14**: Welcome, here's what we learned about you (Personal Plan Summary)
 
 ### **Final Welcome** - Completion screen
 
@@ -36,17 +38,19 @@
 - `Views/ValuePropTour/ValuePropTourView.swift` - Tour coordinator
 - `Views/ValuePropTour/ValuePropPage.swift` - Individual tour pages
 
-### **Onboarding Pages** (Pages 3-12)
+### **Onboarding Pages** (Pages 3-14)
 - `Views/OnboardingPages/NamePage.swift` - Page 3: Name collection
 - `Views/OnboardingPages/WhyPage.swift` - Page 4: Motivation selection
 - `Views/OnboardingPages/CurrentJourneyPage.swift` - Page 5: Journey stage
-- `Views/OnboardingPages/GoalsPage.swift` - Page 6: Short & long-term goals
-- `Views/OnboardingPages/StrengthsPage.swift` - Page 7: Strengths & growth areas
-- `Views/OnboardingPages/InformationSourcesPage.swift` - Page 8: Information sources
-- `Views/OnboardingPages/PersonalInterestsPage.swift` - Page 9: Personal interests
-- `Views/OnboardingPages/NetworkingStylePage.swift` - Page 10: Networking style
-- `Views/OnboardingPages/FinalReflectionPage.swift` - Page 11: Final reflection & file upload
-- `Views/OnboardingPages/PersonalPlanPage.swift` - Page 12: Summary page
+- `Views/OnboardingPages/ShortTermGoalsPage.swift` - Page 6: Short-term goals
+- `Views/OnboardingPages/LongTermGoalsPage.swift` - Page 7: Long-term goals
+- `Views/OnboardingPages/StrengthsPage.swift` - Page 8: Strengths
+- `Views/OnboardingPages/GrowthAreasPage.swift` - Page 9: Growth areas
+- `Views/OnboardingPages/InformationSourcesPage.swift` - Page 10: Information sources
+- `Views/OnboardingPages/PersonalInterestsPage.swift` - Page 11: Personal interests
+- `Views/OnboardingPages/NetworkingStylePage.swift` - Page 12: Networking style
+- `Views/OnboardingPages/FinalReflectionPage.swift` - Page 13: Final reflection & file upload
+- `Views/OnboardingPages/PersonalPlanPage.swift` - Page 14: Summary page
 
 ### **Final Welcome**
 - `Views/FinalWelcomeView.swift` - Completion celebration screen
@@ -96,7 +100,7 @@
 ## 🏗️ Technical Architecture
 
 ### **State Management**
-- `@State currentPage` - Controls flow progression (0-12)
+- `@State currentPage` - Controls flow progression (0-14)
 - `@State onboardingData` - Collects all user input
 - `@State showFinalWelcome` - Triggers completion screen
 - `@Binding` - Passes data between pages
@@ -105,14 +109,16 @@
 - TabView with PageTabViewStyle for smooth page transitions
 - Milestone-based progress tracking (4 phases)
 - Auto-advance on valid input where appropriate
-- Updated page flow: 0-2 (Value Prop), 3-5 (Getting to Know You), 6-7 (Your Goals), 8-10 (Your Habits), 11-12 (Final Touch)
+- Updated page flow: 0-2 (Value Prop), 3-5 (Getting to Know You), 6-9 (Your Goals), 10-12 (Your Habits), 13-14 (Final Touch)
 
 ### **Data Collection**
 - **Name**: Required text input
 - **Motivations**: Multi-select with "Other" option (FIXED: Other chip stays selected when typing)
 - **Journey Stage**: Multi-select chips (UPDATED: Now supports multiple selections)
-- **Goals**: Two sections (short-term & long-term) with unified pill selection
-- **Strengths/Growth**: Two sections with unified pill selection
+- **Short-term Goals**: Unified pill selection with custom input
+- **Long-term Goals**: Unified pill selection with custom input
+- **Strengths**: Unified pill selection with custom input
+- **Growth Areas**: Unified pill selection with custom input
 - **Info Sources**: Checkbox list + always-visible custom text input (ENHANCED: Purple gradient border)
 - **Personal Interests**: Unified pill selection with custom input
 - **Networking Style**: Unified pill selection with custom input (FIXED: Next button works properly)
@@ -125,9 +131,9 @@
 
 ### **4 Main Milestones** (UPDATED MAPPING)
 1. **"Getting to Know You"** (Pages 3-5: Name, Why, Current Journey)
-2. **"Your Goals"** (Pages 6-7: Goals, Strengths) 
-3. **"Your Habits"** (Pages 8-10: Info Sources, Interests, Networking)
-4. **"Final Touch"** (Pages 11-12: Final Reflection, Personal Plan)
+2. **"Your Goals"** (Pages 6-9: Short-term Goals, Long-term Goals, Strengths, Growth Areas) 
+3. **"Your Habits"** (Pages 10-12: Info Sources, Interests, Networking)
+4. **"Final Touch"** (Pages 13-14: Final Reflection, Personal Plan)
 
 ### **Progress Features** (ENHANCED)
 - **Gradual progress bar**: Fills continuously across all pages (0% to 100%)
@@ -142,8 +148,10 @@
 
 ### **Implementation Across Pages**
 The following pages use the unified pill selection pattern:
-- **GoalsPage**: Short-term and long-term goals
-- **StrengthsPage**: Strengths and growth areas  
+- **ShortTermGoalsPage**: Short-term goals
+- **LongTermGoalsPage**: Long-term goals
+- **StrengthsPage**: Strengths
+- **GrowthAreasPage**: Growth areas
 - **PersonalInterestsPage**: Personal interests
 - **NetworkingStylePage**: Networking styles
 
@@ -200,7 +208,7 @@ struct PageName: View {
 ## 📊 Current Status
 
 ### ✅ **Completed Features**
-- Complete 10-page personalization flow (Pages 3-12)
+- Complete 12-page personalization flow (Pages 3-14)
 - **ENHANCED**: Milestone-based progress tracking with gradual fill and completion animations
 - All reusable components implemented
 - Unified pill selection pattern across multiple pages
@@ -266,6 +274,46 @@ struct PageName: View {
 - **Flexible Data Collection**: Users can select multiple journey stages (e.g., "Student" + "Early career")
 - **Consistent Navigation**: All "Next" buttons now work reliably across the entire flow
 - **Satisfying Completion**: Milestone completion animations trigger at the right moments
+
+---
+
+## 🔧 **Latest Session Improvements** (December 2024)
+
+### **Page Structure Refactoring**
+1. **Split Goals Page**: Separated into dedicated ShortTermGoalsPage and LongTermGoalsPage for better focus
+2. **Split Strengths Page**: Separated into dedicated StrengthsPage and GrowthAreasPage for clearer user experience
+3. **Enhanced Page Flow**: Expanded from 10 pages to 12 pages (Pages 3-14) for more focused interactions
+4. **Updated Progress System**: Adjusted milestone boundaries and progress calculations for new page structure
+
+### **New Page Structure**
+- **Page 6**: ShortTermGoalsPage - Focused on 6-12 month goals
+- **Page 7**: LongTermGoalsPage - Focused on 2-5 year aspirations  
+- **Page 8**: StrengthsPage - Current expertise and superpowers
+- **Page 9**: GrowthAreasPage - Skills and areas for development
+
+### **Technical Changes Made**
+- **Created**: `Views/OnboardingPages/ShortTermGoalsPage.swift`
+- **Created**: `Views/OnboardingPages/LongTermGoalsPage.swift`
+- **Created**: `Views/OnboardingPages/GrowthAreasPage.swift`
+- **Updated**: `Views/OnboardingPages/StrengthsPage.swift` - Now focuses only on strengths
+- **Deleted**: `Views/OnboardingPages/GoalsPage.swift` - Replaced by separate pages
+- **Updated**: `ContentView.swift` - Added new pages to TabView flow
+- **Updated**: `Utils/ProgressUtils.swift` - Adjusted milestone boundaries and progress calculations
+- **Updated**: All navigation references across pages to reflect new page numbers
+
+### **User Experience Benefits**
+- **Focused Interactions**: Each page now has a single, clear purpose
+- **Reduced Cognitive Load**: Users can focus on one type of goal or skill at a time
+- **Better Space Utilization**: More room for content and better visual hierarchy
+- **Improved Flow**: Logical progression from short-term to long-term thinking
+- **Enhanced Clarity**: Clear separation between current strengths and growth areas
+
+### **Milestone Structure Correction**
+- **Fixed**: Growth Areas page now correctly part of "Your Goals" milestone (Pages 6-9)
+- **Fixed**: Milestone completion timing - "Your Goals" only completes after Growth Areas page
+- **Updated**: Progress calculations to reflect proper milestone boundaries
+- **Corrected**: "Your Habits" milestone now starts at page 10 (Info Sources)
+- **Fixed**: Final Touch milestone now turns green when reaching the final Personal Plan page (Page 14)
 
 ---
 

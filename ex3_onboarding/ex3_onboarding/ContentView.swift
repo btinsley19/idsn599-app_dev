@@ -43,26 +43,32 @@ struct ContentView: View {
                         CurrentJourneyPage(onboardingData: $onboardingData, currentPage: $currentPage)
                             .tag(5)
                         
-                        GoalsPage(onboardingData: $onboardingData, currentPage: $currentPage)
+                        ShortTermGoalsPage(onboardingData: $onboardingData, currentPage: $currentPage)
                             .tag(6)
                         
-                        StrengthsPage(onboardingData: $onboardingData, currentPage: $currentPage)
+                        LongTermGoalsPage(onboardingData: $onboardingData, currentPage: $currentPage)
                             .tag(7)
                         
-                        InformationSourcesPage(onboardingData: $onboardingData, currentPage: $currentPage)
+                        StrengthsPage(onboardingData: $onboardingData, currentPage: $currentPage)
                             .tag(8)
                         
-                        PersonalInterestsPage(onboardingData: $onboardingData, currentPage: $currentPage)
+                        GrowthAreasPage(onboardingData: $onboardingData, currentPage: $currentPage)
                             .tag(9)
                         
-                        NetworkingStylePage(onboardingData: $onboardingData, currentPage: $currentPage)
+                        InformationSourcesPage(onboardingData: $onboardingData, currentPage: $currentPage)
                             .tag(10)
                         
-                        FinalReflectionPage(onboardingData: $onboardingData, currentPage: $currentPage)
+                        PersonalInterestsPage(onboardingData: $onboardingData, currentPage: $currentPage)
                             .tag(11)
                         
-                        PersonalPlanPage(onboardingData: $onboardingData, showFinalWelcome: $showFinalWelcome)
+                        NetworkingStylePage(onboardingData: $onboardingData, currentPage: $currentPage)
                             .tag(12)
+                        
+                        FinalReflectionPage(onboardingData: $onboardingData, currentPage: $currentPage)
+                            .tag(13)
+                        
+                        PersonalPlanPage(onboardingData: $onboardingData, showFinalWelcome: $showFinalWelcome)
+                            .tag(14)
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     .animation(.easeOut(duration: 0.25), value: currentPage)

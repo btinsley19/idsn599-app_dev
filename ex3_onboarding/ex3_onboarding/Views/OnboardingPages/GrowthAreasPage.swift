@@ -1,5 +1,5 @@
 //
-//  StrengthsPage.swift
+//  GrowthAreasPage.swift
 //  ex3_onboarding
 //
 //  Created by Brian Tinsley on 9/11/25.
@@ -7,29 +7,34 @@
 
 import SwiftUI
 
-struct StrengthsPage: View {
+struct GrowthAreasPage: View {
     @Binding var onboardingData: OnboardingData
     @Binding var currentPage: Int
     
-    @State private var selectedStrengths: Set<String> = []
-    @State private var customStrength: String = ""
+    @State private var selectedGrowthAreas: Set<String> = []
+    @State private var customGrowthArea: String = ""
     
-    private let suggestedStrengths = [
-        "Leadership", "Analytics", "Communication", "Problem Solving", 
-        "Strategic Thinking", "Team Building", "Creativity", "Adaptability",
-        "Project Management", "Critical Thinking"
+    private let suggestedGrowthAreas = [
+        "Public Speaking",
+        "Data Analysis",
+        "Leadership",
+        "Technical Skills",
+        "Networking",
+        "Time Management",
+        "Strategic Thinking",
+        "Communication"
     ]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("What are your superpowers?")
+                Text("What would you love to get better at?")
                     .font(.system(size: 28, weight: .semibold))
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
                 
-                Text("Tell us about your current strengths and expertise. This helps us understand what you bring to the table.")
+                Text("These are the skills and areas where you want to grow. Rolo will help you develop these through personalized content and connections.")
                     .font(.system(size: 16, weight: .regular))
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.leading)
@@ -39,39 +44,39 @@ struct StrengthsPage: View {
             .padding(.top, 40)
             
             VStack(alignment: .leading, spacing: 20) {
-                // Custom strength input
+                // Custom growth area input
                 HStack {
-                    TextField("+ Add your own strength", text: $customStrength)
+                    TextField("+ Add your own growth area", text: $customGrowthArea)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .onSubmit {
-                            if !customStrength.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                                selectedStrengths.insert(customStrength.trimmingCharacters(in: .whitespacesAndNewlines))
-                                customStrength = ""
+                            if !customGrowthArea.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                                selectedGrowthAreas.insert(customGrowthArea.trimmingCharacters(in: .whitespacesAndNewlines))
+                                customGrowthArea = ""
                             }
                         }
                     
                     Button("Add") {
-                        if !customStrength.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                            selectedStrengths.insert(customStrength.trimmingCharacters(in: .whitespacesAndNewlines))
-                            customStrength = ""
+                        if !customGrowthArea.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                            selectedGrowthAreas.insert(customGrowthArea.trimmingCharacters(in: .whitespacesAndNewlines))
+                            customGrowthArea = ""
                         }
                     }
-                    .disabled(customStrength.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    .disabled(customGrowthArea.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 }
                 
-                // All strengths (suggested + custom)
-                let allStrengths = suggestedStrengths + Array(selectedStrengths).filter { !suggestedStrengths.contains($0) }
-                if !allStrengths.isEmpty {
+                // All growth areas (suggested + custom)
+                let allGrowthAreas = suggestedGrowthAreas + Array(selectedGrowthAreas).filter { !suggestedGrowthAreas.contains($0) }
+                if !allGrowthAreas.isEmpty {
                     FlowLayout(hSpacing: 8, vSpacing: 8, rowAlignment: .center) {
-                        ForEach(allStrengths, id: \.self) { strength in
+                        ForEach(allGrowthAreas, id: \.self) { area in
                             Chip(
-                                text: strength,
-                                isSelected: selectedStrengths.contains(strength)
+                                text: area,
+                                isSelected: selectedGrowthAreas.contains(area)
                             ) {
-                                if selectedStrengths.contains(strength) {
-                                    selectedStrengths.remove(strength)
+                                if selectedGrowthAreas.contains(area) {
+                                    selectedGrowthAreas.remove(area)
                                 } else {
-                                    selectedStrengths.insert(strength)
+                                    selectedGrowthAreas.insert(area)
                                 }
                             }
                         }
@@ -86,7 +91,7 @@ struct StrengthsPage: View {
             HStack(spacing: 16) {
                 Button("Back") {
                     withAnimation(.easeOut(duration: 0.25)) {
-                        currentPage = 6
+                        currentPage = 8
                     }
                 }
                 .font(.system(size: 16, weight: .medium))
@@ -95,11 +100,11 @@ struct StrengthsPage: View {
                 Spacer()
                 
                 GradientButton(title: "Next ▸") {
-                    // Save selected strengths to onboarding data
-                    onboardingData.strengths.append(contentsOf: selectedStrengths)
+                    // Save selected growth areas to onboarding data
+                    onboardingData.growthAreas.append(contentsOf: selectedGrowthAreas)
                     
                     withAnimation(.easeOut(duration: 0.25)) {
-                        currentPage = 9
+                        currentPage = 10
                     }
                 }
             }
@@ -108,3 +113,4 @@ struct StrengthsPage: View {
         }
     }
 }
+

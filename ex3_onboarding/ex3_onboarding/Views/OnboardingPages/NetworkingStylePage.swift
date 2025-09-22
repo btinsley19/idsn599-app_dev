@@ -91,7 +91,7 @@ struct NetworkingStylePage: View {
             HStack(spacing: 16) {
                 Button("Back") {
                     withAnimation(.easeOut(duration: 0.25)) {
-                        currentPage = 9
+                        currentPage = 11
                     }
                 }
                 .font(.system(size: 16, weight: .medium))
@@ -101,7 +101,7 @@ struct NetworkingStylePage: View {
                 
                 GradientButton(title: "Next ▸") {
                     withAnimation(.easeOut(duration: 0.25)) {
-                        currentPage = 11
+                        currentPage = 13
                     }
                 }
             }
