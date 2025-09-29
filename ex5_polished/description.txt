@@ -1,0 +1,11 @@
+DayStream App Submission
+
+This is DayStream, a daily reflection app built with SwiftUI. It's designed to help you quickly check in with your feelings and thoughts each day through a simple and clean interface.
+
+Here are some of the key tech features implemented:
+
+*   **Music & Sound:** We added a relaxing, looping meditation track on the "Journal" page to help set a reflective mood. Just tap the play button at the top! We also added a success sound effect (using AudioToolbox) when you save a journal or a guided prompt.
+
+*   **Haptic Feedback:** To make the app feel more responsive, we added haptics in a few key places. You'll feel a subtle tap when you move the daily sliders, click on the suggested tags, and a success vibration when you save an entry or complete your day.
+
+*   **Data Storage:** All of your daily entries are stored locally and securely on your device using Apple's modern **SwiftData** framework. It automatically handles saving everything from your scores and tags to your journal text, so your data is always there when you come back to the app.
