@@ -54,7 +54,7 @@ final class DailyEntry {
     var emotionScore: Int
     var energyScore: Int
     var productivityScore: Int
-    var stressScore: Int
+    var calmnessScore: Int
     var satisfactionScore: Int
     var nutritionScore: Int
     var sleepScore: Int
@@ -67,12 +67,12 @@ final class DailyEntry {
     var reflections: [PromptEntry] = []
     var isComplete: Bool
 
-    init(date: Date, emotionScore: Int = 5, energyScore: Int = 5, productivityScore: Int = 5, stressScore: Int = 5, satisfactionScore: Int = 5, nutritionScore: Int = 5, sleepScore: Int = 5, exerciseScore: Int = 5, gratitudeScore: Int = 5, socialConnectionScore: Int = 5, influenceTags: [String] = [], journalText: String = "", reflections: [PromptEntry] = [], isComplete: Bool = false) {
+    init(date: Date, emotionScore: Int = 5, energyScore: Int = 5, productivityScore: Int = 5, calmnessScore: Int = 5, satisfactionScore: Int = 5, nutritionScore: Int = 5, sleepScore: Int = 5, exerciseScore: Int = 5, gratitudeScore: Int = 5, socialConnectionScore: Int = 5, influenceTags: [String] = [], journalText: String = "", reflections: [PromptEntry] = [], isComplete: Bool = false) {
         self.date = date
         self.emotionScore = emotionScore
         self.energyScore = energyScore
         self.productivityScore = productivityScore
-        self.stressScore = stressScore
+        self.calmnessScore = calmnessScore
         self.satisfactionScore = satisfactionScore
         self.nutritionScore = nutritionScore
         self.sleepScore = sleepScore
@@ -86,7 +86,7 @@ final class DailyEntry {
     }
     
     var averageScore: Double {
-        Double(emotionScore + energyScore + productivityScore + stressScore + satisfactionScore) / 5.0
+        Double(emotionScore + energyScore + productivityScore + calmnessScore + satisfactionScore) / 5.0
     }
 }
 
@@ -194,20 +194,20 @@ struct TagGenerationService {
         /// Checks if this tag is a candidate for a given entry based on its scores.
         func isCandidate(for entry: DailyEntry) -> Bool {
             switch self {
-            // Emotional / Mental State
-            case .calm: return entry.stressScore <= 3 && entry.emotionScore >= 6
+            // Emotional / Mental State (calmnessScore: high is good, low is bad)
+            case .calm: return entry.calmnessScore >= 8 && entry.emotionScore >= 6
             case .joyful: return entry.emotionScore >= 8 && entry.satisfactionScore >= 7
-            case .content: return entry.emotionScore >= 6 && entry.stressScore <= 5
+            case .content: return entry.emotionScore >= 6 && entry.calmnessScore >= 6
             case .grateful: return entry.gratitudeScore >= 7
             case .inspired: return entry.satisfactionScore >= 8 && entry.productivityScore >= 7
             case .motivated: return entry.energyScore >= 7 && entry.productivityScore >= 7
-            case .focused: return entry.productivityScore >= 7 && entry.stressScore <= 5 // Simplified from original rules
-            case .clearHeaded: return entry.stressScore <= 3 && entry.energyScore >= 6
-            case .distracted: return entry.productivityScore <= 4 || entry.stressScore >= 7
-            case .irritable: return entry.stressScore >= 7 && entry.emotionScore <= 4
-            case .anxious: return entry.stressScore >= 8 && entry.energyScore >= 6
-            case .overwhelmed: return entry.stressScore >= 8 && entry.productivityScore <= 5
-            case .stressed: return entry.stressScore >= 7
+            case .focused: return entry.productivityScore >= 7 && entry.calmnessScore >= 6
+            case .clearHeaded: return entry.calmnessScore >= 8 && entry.energyScore >= 6
+            case .distracted: return entry.productivityScore <= 4 || entry.calmnessScore <= 4
+            case .irritable: return entry.calmnessScore <= 4 && entry.emotionScore <= 4
+            case .anxious: return entry.calmnessScore <= 3 && entry.energyScore >= 6
+            case .overwhelmed: return entry.calmnessScore <= 3 && entry.productivityScore <= 5
+            case .stressed: return entry.calmnessScore <= 4
             case .lonely: return entry.socialConnectionScore <= 3
             case .bored: return entry.emotionScore <= 4 && entry.productivityScore <= 4
                 
@@ -215,11 +215,11 @@ struct TagGenerationService {
             case .rested: return entry.sleepScore >= 7
             case .tired: return entry.sleepScore <= 3
             case .restDowntime: return entry.satisfactionScore >= 6 && entry.productivityScore <= 5
-            case .screenHeavy: return entry.energyScore <= 5 && entry.productivityScore <= 5 && (entry.stressScore >= 6 ? Bool.random() : true)
-            case .overworked: return entry.productivityScore >= 8 && entry.stressScore >= 7
-            case .balancedDay: return entry.satisfactionScore >= 7 && entry.emotionScore >= 7 && entry.stressScore <= 5
+            case .screenHeavy: return entry.energyScore <= 5 && entry.productivityScore <= 5 && (entry.calmnessScore <= 5 ? Bool.random() : true)
+            case .overworked: return entry.productivityScore >= 8 && entry.calmnessScore <= 4
+            case .balancedDay: return entry.satisfactionScore >= 7 && entry.emotionScore >= 7 && entry.calmnessScore >= 6
             case .timeInNature: return entry.emotionScore >= 6 && entry.energyScore >= 6 && entry.satisfactionScore >= 6 && Bool.random()
-            case .mindfulPresent: return entry.gratitudeScore >= 6 && entry.stressScore <= 4
+            case .mindfulPresent: return entry.gratitudeScore >= 6 && entry.calmnessScore >= 7
             case .creative: return entry.energyScore >= 6 && entry.productivityScore >= 6 && entry.satisfactionScore >= 7
             case .playful: return entry.emotionScore >= 7 && entry.socialConnectionScore >= 6
                 
@@ -227,8 +227,8 @@ struct TagGenerationService {
             case .connected: return entry.socialConnectionScore >= 7
             case .supported: return entry.socialConnectionScore >= 6 && entry.gratitudeScore >= 6
             case .productiveDeepWork: return entry.productivityScore >= 8 && DynamicTag.focused.isCandidate(for: entry)
-            case .multitasking: return entry.productivityScore >= 7 && entry.stressScore >= 6
-            case .rushed: return entry.productivityScore >= 8 && entry.stressScore >= 8
+            case .multitasking: return entry.productivityScore >= 7 && entry.calmnessScore <= 5
+            case .rushed: return entry.productivityScore >= 8 && entry.calmnessScore <= 3
             }
         }
     }
@@ -463,7 +463,7 @@ struct DailyCheckInView: View {
             }
             .navigationTitle("Today's Check-in")
             .background(Color(.systemGroupedBackground))
-            .onChange(of: [todayEntry.emotionScore, todayEntry.energyScore, todayEntry.productivityScore, todayEntry.stressScore, todayEntry.satisfactionScore, todayEntry.nutritionScore, todayEntry.sleepScore, todayEntry.exerciseScore, todayEntry.gratitudeScore, todayEntry.socialConnectionScore]) {
+            .onChange(of: [todayEntry.emotionScore, todayEntry.energyScore, todayEntry.productivityScore, todayEntry.calmnessScore, todayEntry.satisfactionScore, todayEntry.nutritionScore, todayEntry.sleepScore, todayEntry.exerciseScore, todayEntry.gratitudeScore, todayEntry.socialConnectionScore]) {
                 if todayEntry.isComplete { todayEntry.isComplete = false }
             }
             .onChange(of: todayEntry.influenceTags) {
@@ -513,7 +513,7 @@ struct ScoreSlidersView: View {
             ScoreSlider(label: "Emotion", systemImage: "face.smiling", value: $entry.emotionScore, color: .blue)
             ScoreSlider(label: "Energy", systemImage: "bolt.fill", value: $entry.energyScore, color: .orange)
             ScoreSlider(label: "Productivity", systemImage: "chart.bar.fill", value: $entry.productivityScore, color: .purple)
-            ScoreSlider(label: "Stress", systemImage: "flame.fill", value: $entry.stressScore, color: .red)
+            ScoreSlider(label: "Calmness", systemImage: "wind", value: $entry.calmnessScore, color: .mint)
             ScoreSlider(label: "Satisfaction", systemImage: "star.fill", value: $entry.satisfactionScore, color: .teal)
         }
         .padding()
@@ -608,7 +608,7 @@ struct InfluenceTaggerView: View {
         .background(Color(.secondarySystemBackground))
         .cornerRadius(12)
         .onAppear(perform: generateTags)
-        .onChange(of: [entry.emotionScore, entry.energyScore, entry.productivityScore, entry.stressScore, entry.satisfactionScore, entry.nutritionScore, entry.sleepScore, entry.exerciseScore, entry.gratitudeScore, entry.socialConnectionScore]) {
+        .onChange(of: [entry.emotionScore, entry.energyScore, entry.productivityScore, entry.calmnessScore, entry.satisfactionScore, entry.nutritionScore, entry.sleepScore, entry.exerciseScore, entry.gratitudeScore, entry.socialConnectionScore]) {
             generateTags()
         }
     }
@@ -1122,7 +1122,7 @@ struct DailyEntryDetailView: View {
                         ScoreDetailView(label: "Emotion", value: entry.emotionScore, systemImage: "face.smiling", color: .blue)
                         ScoreDetailView(label: "Energy", value: entry.energyScore, systemImage: "bolt.fill", color: .orange)
                         ScoreDetailView(label: "Productivity", value: entry.productivityScore, systemImage: "chart.bar.fill", color: .purple)
-                        ScoreDetailView(label: "Stress", value: entry.stressScore, systemImage: "flame.fill", color: .red)
+                        ScoreDetailView(label: "Calmness", value: entry.calmnessScore, systemImage: "wind", color: .mint)
                         ScoreDetailView(label: "Satisfaction", value: entry.satisfactionScore, systemImage: "star.fill", color: .teal)
                     }
                 }
