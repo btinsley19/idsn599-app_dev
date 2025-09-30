@@ -258,8 +258,12 @@ struct TagGenerationService {
 
 class HapticManager {
     static let shared = HapticManager()
-    @AppStorage("hapticFeedbackEnabled") private var hapticsEnabled: Bool = true
-    @AppStorage("soundEffectsEnabled") private var soundEffectsEnabled: Bool = true
+    @AppStorage("hapticFeedbackEnabled") private var _hapticsEnabled: Bool = true
+    @AppStorage("soundEffectsEnabled") private var _soundEffectsEnabled: Bool = true
+
+    // Public getter for other views to check the setting
+    var hapticsEnabled: Bool { _hapticsEnabled }
+    var soundEffectsEnabled: Bool { _soundEffectsEnabled }
 
     private init() {}
 
@@ -278,7 +282,7 @@ class HapticManager {
     }
 
     func playSound(_ sound: SoundManager.Sound) {
-        guard soundEffectsEnabled else { return }
+        guard _soundEffectsEnabled else { return }
         SoundManager.shared.playSound(sound)
     }
 }
@@ -459,6 +463,12 @@ struct DailyCheckInView: View {
             }
             .navigationTitle("Today's Check-in")
             .background(Color(.systemGroupedBackground))
+            .onChange(of: [todayEntry.emotionScore, todayEntry.energyScore, todayEntry.productivityScore, todayEntry.stressScore, todayEntry.satisfactionScore, todayEntry.nutritionScore, todayEntry.sleepScore, todayEntry.exerciseScore, todayEntry.gratitudeScore, todayEntry.socialConnectionScore]) {
+                if todayEntry.isComplete { todayEntry.isComplete = false }
+            }
+            .onChange(of: todayEntry.influenceTags) {
+                if todayEntry.isComplete { todayEntry.isComplete = false }
+            }
         }
     }
 }
@@ -632,12 +642,13 @@ struct TagButton: View {
 
 struct CompleteDayButton: View {
     @Bindable var entry: DailyEntry // Changed to Bindable
-    @AppStorage("hapticFeedbackEnabled") private var hapticsEnabled: Bool = true
+    @State private var hasBeenCompletedOnce = false
 
     var body: some View {
         Button(action: {
             withAnimation {
                 entry.isComplete = true
+                hasBeenCompletedOnce = true
             }
             if hapticsEnabled {
                 HapticManager.shared.notification(type: .success)
@@ -645,7 +656,7 @@ struct CompleteDayButton: View {
         }) {
             HStack {
                 Image(systemName: "checkmark")
-                Text("Complete Day Entry")
+                Text(entry.isComplete ? "Update Day Entry" : "Complete Day Entry")
             }
             .font(.headline)
             .fontWeight(.bold)
@@ -656,8 +667,14 @@ struct CompleteDayButton: View {
             .cornerRadius(12)
         }
         .disabled(entry.isComplete)
-        .scaleEffect(entry.isComplete ? 1.0 : 1.02)
+        .scaleEffect(entry.isComplete ? 1.0 : 1.0) // Keep consistent size
         .animation(.spring(response: 0.3, dampingFraction: 0.5), value: entry.isComplete)
+        .onAppear {
+            hasBeenCompletedOnce = entry.isComplete
+        }
+    }
+    private var hapticsEnabled: Bool {
+        HapticManager.shared.hapticsEnabled
     }
 }
 
@@ -704,10 +721,6 @@ struct JournalPromptView: View {
             }
             .navigationTitle("Reflect")
             .background(Color(.systemGroupedBackground))
-            .onDisappear {
-                // Stop the music when the user navigates away from the tab
-                audioPlayerManager.stop()
-            }
         }
     }
 }
@@ -741,7 +754,7 @@ struct QuickJournalView: View {
             .background(isSaved ? .green : Color.accentColor)
             .foregroundColor(.white)
             .cornerRadius(12)
-            .padding()
+            .padding([.horizontal, .bottom])
             .disabled(isSaved && text == entry.journalText)
         }
         .onChange(of: text) {
@@ -866,14 +879,14 @@ struct PromptDetailView: View {
             .frame(maxWidth: .infinity).padding()
             .background(isSaved ? .green : Color.accentColor)
             .foregroundColor(.white).cornerRadius(12)
-            .disabled(isSaved)
+            .disabled(isSaved || answer.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         }
         .padding()
         .navigationTitle(category)
         .background(Color(.systemGroupedBackground))
         .onChange(of: answer) { isSaved = false }
     }
-    
+
     private func save() {
         if let i = entry.reflections.firstIndex(where: { $0.category == category }) {
             entry.reflections[i].prompt = prompt
